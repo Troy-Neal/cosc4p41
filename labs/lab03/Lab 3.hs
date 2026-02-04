@@ -23,15 +23,16 @@ removeDuplicates1' :: Eq a => [a] -> [a]
 removeDuplicates1' [] = []
 removeDuplicates1' (x:xs) = x : removeDuplicates1' (filter (x/=) xs) -- same as: (filter (\c -> c /= x) xs)
 
+-- Remove duplicates, by passing a comparison function
+removeDuplicatesBy :: (a -> a -> Bool) -> [a] -> [a]
+removeDuplicatesBy _ [] = []
+removeDuplicatesBy compf (x:xs) = x : removeDuplicatesBy compf (filter (not. compf x) xs) -- Same as: (\c -> not(compf c x)) xs)
 
 
-{--
+
+{-- Remaining Implementations 
 
 removeDuplicates2 :: Eq a => [a] -> [a]
-
-
-removeDuplicatesBy :: (a -> a -> Bool) -> [a] -> [a]
-  
 
 removeDuplicates3 :: Eq a => [a] -> [a]  
        
