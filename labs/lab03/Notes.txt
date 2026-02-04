@@ -1,4 +1,17 @@
+https://hoogle.haskell.org/
+https://arkatgit.github.io/articles/teaching.html
+
 Type Class:
     A type class is an interface that defines some behaviors.
     * Any instance of a type calss must imlement the behavior specified by the type class.
-f.g = \x -> f ( g x )
+f.g = \x -> f ( g x ) 
+
+Relation: pairs of numbers from a set that satisfy
+A relation R over a set X R \subset {(x,y) | x,y \in X}
+list of ordered pairs: eg for < {2,3,4} -> {(2,3), (2,4), (3,4)}
+    domain = {2,3} -> First entires
+    co-domain = {3,4} -> Second entries
+Compose Relation
+    A = {(2,4),(3,2)}
+    B = {(4,6),(5,2),(2,8)}
+    A compose B = {(2,6),(3,8)}
