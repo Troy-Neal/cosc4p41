@@ -4,6 +4,11 @@ import Prelude hiding (Semigroup, Monoid)
 import Data.List
 import Data.Tuple
 
+{-- 
+    RECURSION    
+ --}
+
+-- Recursion with remove using recursion 
 removeDuplicates1 :: Eq a => [a] -> [a]
 removeDuplicates1 [] = []
 removeDuplicates1 (x:xs) = x : removeDuplicates1 (remove x xs)
@@ -13,8 +18,12 @@ removeDuplicates1 (x:xs) = x : removeDuplicates1 (remove x xs)
            | c == q = remove c qs
            | otherwise = q : remove c qs
 
-removeDuplicates2 :: Eq a => [a] -> [a]
-removeDuplicates2
+-- Recursion with remove using filtering
+removeDuplicates1' :: Eq a => [a] -> [a]
+removeDuplicates1' [] = []
+removeDuplicates1' (x:xs) = x : removeDuplicates1' (filter (x/=) xs) -- same as: (filter (\c -> c /= x) xs)
+
+
 
 {--
 
