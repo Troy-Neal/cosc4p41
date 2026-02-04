@@ -1,0 +1,3 @@
+Type Class:
+    A type class is an interface that defines some behaviors.
+    * Any instance of a type calss must imlement the behavior specified by the type class.
