@@ -1,14 +1,12 @@
 import Data.List hiding (union)
 import Data.Word
-import Trace.Hpc.Util (Hash)
-import System.Win32 (xBUTTON1)
 
 type Byte = Word8
 
 {- Please do the following:
    1. Add the following information:
-      Name: Troy Neal
-      Std#: 7643091
+      Name:
+      Std#:
    2. Implement the functions in Haskell below.
    3. Once you are finished sent the file to mwinter@brocku.ca. You will
       receive a confirmation by email from me. After that you are free to
@@ -97,22 +95,6 @@ type Byte = Word8
                     hashcode ([-123,300]::[Int])== 71 
 -}
 
-class (Eq a) => Hashable a
-    where hashcode :: a -> Byte
-instance Hashable Bool
-    where hashcode False = 0
-          hashcode True  = 1
-instance Hashable Int
-    where hashcode x = toEnum( x `mod` 256)
-instance Hashable Char
-    where hashcode x = hashcode(fromEnum x)
-instance (Hashable a,Hashable b) => Hashable (a,b)
-    where hashcode (x,y) = 31 * hashcode x + hashcode y
-instance (Hashable a,Hashable b, Hashable c) => Hashable (a,b,c)
-    where hashcode (x,y,z) =  31 * hashcode(x,y) + hashcode z
-instance (Hashable a) => Hashable [a]
-    where hashcode = foldl (\h x -> 31 * h + hashcode x ) 0
-    
 
     
 {- 
@@ -131,7 +113,7 @@ instance (Hashable a) => Hashable [a]
         the first parameter is in the set (second parameter), i.e., elemSet x s equals True iff
         x is in the list s (hashcode x).
         Hint:      Use the function elem.
-        Examples:   == True
+        Examples:  elemSet  97 exampleSet1 == True
                    elemSet  49 exampleSet1 == False
                    elemSet  10 exampleSet1 == True
                    elemSet 522 exampleSet1 == False
@@ -164,25 +146,6 @@ instance (Hashable a) => Hashable [a]
 -}
     
 type HashSet a = Byte -> [a]
-
-elements :: HashSet a -> [a]
-elements s = concatMap s [minBound.. maxBound]
-
-elemSet :: Hashable a => a -> HashSet a -> Bool
-elemSet x z = x `elem` z (hashcode x)
-
-add :: Hashable a => a -> HashSet a -> HashSet a
-add x s b 
- | hashcode x == b = nub (x: s b)
- | otherwise = s b
-
-union :: Hashable a => HashSet a -> HashSet a -> HashSet a
-union s1 s2 b = nub(s1 b ++ s2 b)
-
-meet ::  Hashable a => HashSet a -> HashSet a -> HashSet a
-meet s1 s2 b = [x | x <- s1 b, x `elem` s2 b]
-
-
 
 exampleSet1 :: HashSet Int
 exampleSet1 97 = [353,97]
