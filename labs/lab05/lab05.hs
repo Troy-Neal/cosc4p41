@@ -74,26 +74,30 @@ languageDef = emptyDef {
                 Token.reservedNames = ["Store", "Null", "Eval", "."],
                 Token.reservedOpNames = ["+", "-", "*", "/", "%", ":="]
               }
-{-
-     
-
-
 
 lexer :: Token.TokenParser ()
-
-
+lexer = Token.makeTokenParser languageDef
 
 identifier :: Parser String
-
+identifier = Token.identifier lexer
 
 reserved :: String -> Parser ()
-
+reserved = Token.reserved lexer
 
 reservedOp :: String -> Parser ()
+reservedOp = Token.reservedOp lexer
 
-
-
+{-
 parens :: Parser a -> Parser a
+
+
+
+
+
+
+
+
+
 
 
 integer :: Parser Integer
